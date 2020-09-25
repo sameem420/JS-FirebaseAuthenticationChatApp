@@ -17,15 +17,57 @@
     color: white;
     background-color: rgb(250, 52, 52);
     border: none;
+    border-radius: 25px;
     
 }
 #btnSignOut:hover{
-    border: 5px solid navy;
+    color: black;
+}
+#btnSignOut:focus {
+    outline: none;
 }
 #btnfbLogin {
     background-color: rgb(245, 233, 233);
     border: none;
+    border-radius: 50px;
 }
 #btnfbLogin:hover{
     border: 5px solid navy;
+}
+#btnfbLogin:focus{
+    outline: none;
+}
+#chat_section {
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 25px;
+    border-top: 5px solid navy;
+    border-left: 5px solid navy;
+    border-right: 5px solid navy;
+}
+#message {
+    margin-top: 150px;
+    margin-bottom: 10px;
+    width: 65%;
+    height: 25px;
+    border-radius: 25px;
+    border-style: solid ; 
+    outline: none;
+}
+#message:focus {
+    
+}
+#btnSend {
+    width: 25%;
+    height: 30px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    margin-bottom: 10px;
+    color: white;
+    background-color: teal;
+}
+#btnSend:hover{
+    color:black;
 }
