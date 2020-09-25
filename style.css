@@ -17,25 +17,21 @@
     color: white;
     background-color: rgb(250, 52, 52);
     border: none;
+    outline: none;
     border-radius: 25px;
     
 }
 #btnSignOut:hover{
     color: black;
 }
-#btnSignOut:focus {
-    outline: none;
-}
 #btnfbLogin {
     background-color: rgb(245, 233, 233);
     border: none;
+    outline: none;
     border-radius: 50px;
 }
 #btnfbLogin:hover{
     border: 5px solid navy;
-}
-#btnfbLogin:focus{
-    outline: none;
 }
 #chat_section {
     width: 60%;
@@ -54,9 +50,6 @@
     border-radius: 25px;
     border-style: solid ; 
     outline: none;
-}
-#message:focus {
-    
 }
 #btnSend {
     width: 25%;
