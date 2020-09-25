@@ -12,15 +12,25 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 
 
- let fbLogin = document.getElementById("facebooklogin")
-
-
-  fbLogin.addEventListener('click', signInWithFB);
+ let fbLogin = document.getElementById("facebooklogin");
+  console.log(fbLogin);
 
 
   let signInWithFB = () => {
-      
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(() => {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        var user = result.user;
+         window.location="chat.html"
+        
+        // ...
+      }).catch(error => {
+            console.log(error.message)
+        // ...
+      });
   }
+
+  fbLogin.addEventListener('click', signInWithFB);
