@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>FireChat</title>
 </head>
 <body>
+    <h1>Welcome to FireChat</h1>
     <div id="container">
-        <figure>
-            <img src="./assets/facebook.png" alt="">
-            <figcaption>Facebook Login</figcaption>            
-        </figure>
+        <h2>Login With Facebook</h2>
+        <img src="./assets/facebook.png" alt="facebook login" width="150px" id="facebooklogin">   
     </div>
 </body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+<script src="./app.js"></script>
 </html>
