@@ -1,7 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
 * {
     font-family: 'Kufam', cursive;
+}
+body {
     text-align: center;
+}
+#messages {
+    
+}
+#userName {
+    font-size:50%;
+}
+#messageContent {
+    margin-top: 5px;
+    float: left;
+    color: white;
+    width: 50%;
+    list-style-type: none;
+    text-align: left;
+    border-radius: 25px;
+    padding: 5px 5px 5px 10px;
+    background-color: rgb(182, 172, 172);
 }
 #container {
     margin: auto;
@@ -41,10 +60,13 @@
     border-top: 5px solid navy;
     border-left: 5px solid navy;
     border-right: 5px solid navy;
+    overflow-y: auto;
+    height: 300px;
 }
 #message {
     margin-top: 150px;
     margin-bottom: 10px;
+    padding-left: 10px;
     width: 65%;
     height: 25px;
     border-radius: 25px;

@@ -13,7 +13,23 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
- 
+  var userMessage = document.getElementById("message");
+  var btnSendMessage = document.getElementById("btnSend");
+  var messages = document.getElementById("messages");
+
+  let sendMessage = () => {
+    let message = userMessage.value;
+    let messageContent = document.createElement('li');
+    let userName = document.createElement('p');
+    userName.setAttribute('id', 'userName');
+    userName.innerHTML = localStorage.getItem('displayName');
+    messageContent.setAttribute('id', 'messageContent');
+    messageContent.innerText = message + " " + userName.innerText;
+    messages.appendChild(messageContent);
+  }
+
+
+  btnSendMessage.addEventListener('click', sendMessage);
 
  // Facebook LogIn Function
   function signInWithFB() {
