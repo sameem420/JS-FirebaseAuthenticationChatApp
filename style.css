@@ -22,3 +22,10 @@
 #btnSignOut:hover{
     border: 5px solid navy;
 }
+#btnfbLogin {
+    background-color: rgb(245, 233, 233);
+    border: none;
+}
+#btnfbLogin:hover{
+    border: 5px solid navy;
+}
