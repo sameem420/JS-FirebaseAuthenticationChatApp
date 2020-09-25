@@ -13,19 +13,30 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+ 
 
- let fbLogin = document.getElementById("facebooklogin");
-
-  const signInWithFB = () => {
+ // Facebook LogIn Function
+  function signInWithFB() {
     var provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-         window.location="chat.html"
+         window.location = "chat.html"
+         var user = result.user;
+         localStorage.setItem("userInfo", JSON.stringify(user));
+         localStorage.setItem("displayName", user.displayName);
         // ...
       }).catch(error => {
             console.log(error.message)
-        // ...
       });
   }
 
-  fbLogin.addEventListener('click', signInWithFB);
+  // Facebook LogOut Function
+  function fbSignOut() {
+    firebase.auth().signOut().then(() => {
+        window.location= 'index.html'
+    })
+    .catch(()=>{
+        console.log("error")
+    })
+
+}

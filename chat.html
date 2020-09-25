@@ -7,10 +7,16 @@
     <title>FireChat</title>
 </head>
 <body>
-    <h1>Welcome to Chat <span id="currentUser"></span></h1>
-    <button id="signout">SignOut</button>
+    <button onclick="fbSignOut()" id="btnSignOut">SignOut</button>
+    <div>
+        <h1>Welcome to Chat <span id="currentUser"></span></h1>
+        <img src="" alt="User Photo" id="user_photo">
+    </div>
+    
+
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
-<script src="./chat.js"></script>
+<script src="./app.js"></script>
+<script src="./userInfo.js"></script>
 </html>
