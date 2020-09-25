@@ -15,16 +15,17 @@
 
 
  let fbLogin = document.getElementById("facebooklogin");
-  console.log(fbLogin);
-
+ let fbLogout = document.getElementById("signout");
+ let currentUser = document.getElementById("currentUser");
 
   let signInWithFB = () => {
     var provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(() => {
+    firebase.auth().signInWithPopup(provider).then((result) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
-        var user = result.user;
+        var user = firebase.auth().currentUser;
          window.location="chat.html"
+         currentUser.innerHTML = user;
         
         // ...
       }).catch(error => {
@@ -34,3 +35,17 @@
   }
 
   fbLogin.addEventListener('click', signInWithFB);
+
+
+  let fbSignOut =()=> {
+    firebase.auth().signOut().then(()=>{
+        window.location= 'index.html'
+        console.log("succesful")
+    })
+    .catch(()=>{
+        console.log("error")
+    })
+
+}
+
+fbLogout.addEventListener('click', fbSignOut);
