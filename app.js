@@ -13,8 +13,20 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  const dbRef = firebase.database().ref('chatUsersData');
+  dbRef.set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  }, function(error) {
+    if (error) {
+      console.log("The write failed...");
+    } else {
+      console.log("Data saved successfully!");
+    }
+  });
 
-  
+
   var userMessage = document.getElementById("message");
   var btnSendMessage = document.getElementById("btnSend");
   var messages = document.getElementById("messages");
