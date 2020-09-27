@@ -13,6 +13,8 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
+  
   var userMessage = document.getElementById("message");
   var btnSendMessage = document.getElementById("btnSend");
   var messages = document.getElementById("messages");
