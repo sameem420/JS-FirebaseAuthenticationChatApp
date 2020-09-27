@@ -13,11 +13,12 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
   const dbRef = firebase.database().ref('chatUsersData');
   dbRef.set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
+    username: "Sameem",
+    email: "email@email.com",
+    profile_picture : "imageUrl"
   }, function(error) {
     if (error) {
       console.log("The write failed...");
@@ -38,7 +39,7 @@
     userName.setAttribute('id', 'userName');
     userName.innerHTML = localStorage.getItem('displayName');
     messageContent.setAttribute('id', 'messageContent');
-    messageContent.innerText = message + " " + userName.innerText;
+    messageContent.innerText = userName.innerText + " : " + message;
     messages.appendChild(messageContent);
   }
 
