@@ -1,27 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Ubuntu&display=swap');
 * {
-    font-family: 'Kufam', cursive;
+    /* font-family: 'Kufam', cursive; */
+    /* font-family: 'Titillium Web', sans-serif; */
+    /* font-family: 'Cairo', sans-serif; */
+    /* font-family: 'Caveat', cursive; */
+    /* font-family: 'Exo 2', sans-serif; */
+    font-family: 'Ubuntu', sans-serif;
 }
+
 body {
     text-align: center;
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
-#messages {
-    
-}
-#userName {
-    font-size:50%;
-}
-#messageContent {
-    margin: 5px 5px 5px 0px;
-    float: right;
-    color: white;
-    width: 50%;
-    list-style-type: none;
-    text-align: left;
-    border-radius: 25px;
-    padding: 5px 5px 5px 10px;
-    background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
 }
 #container {
     margin: auto;
@@ -29,6 +23,26 @@ body {
     text-align: center;
     border-left: 5px solid red;
     border-right: 5px solid red;
+}
+#messages {
+    
+}
+#userName {
+    color: red;
+    font-size:50%;
+}
+#messageContent {
+    margin: 5px 5px 5px 0px;
+    float: right;
+    color: black;
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+    word-wrap: break-word;
+    /* border-radius: 25px; */
+    padding: 5px 5px 5px 10px;
+    /* background-image: linear-gradient(to right, #868f96 0%, #596164 100%); */
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.089);
 }
 #btnSignOut {
     float: right;
