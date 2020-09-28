@@ -36,12 +36,13 @@
     let message = userMessage.value;
     let messageContent = document.createElement('div');
     let userName = document.createElement('h5');
-    userName.setAttribute('id', 'userName');
-    userName.innerHTML = localStorage.getItem('displayName');
-    messages.appendChild(userName);
     messageContent.setAttribute('id', 'messageContent');
     messageContent.innerHTML = message;
+    messageContent.appendChild(userName);
     messages.appendChild(messageContent);
+    userName.setAttribute('id', 'userName');
+    userName.innerHTML = "~" + localStorage.getItem('displayName');
+    
   }
 
 
