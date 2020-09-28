@@ -34,12 +34,13 @@
 
   let sendMessage = () => {
     let message = userMessage.value;
-    let messageContent = document.createElement('li');
-    let userName = document.createElement('p');
+    let messageContent = document.createElement('div');
+    let userName = document.createElement('h5');
     userName.setAttribute('id', 'userName');
     userName.innerHTML = localStorage.getItem('displayName');
+    messages.appendChild(userName);
     messageContent.setAttribute('id', 'messageContent');
-    messageContent.innerText = userName.innerText + " : " + message;
+    messageContent.innerHTML = message;
     messages.appendChild(messageContent);
   }
 

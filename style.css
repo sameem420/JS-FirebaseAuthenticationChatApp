@@ -6,11 +6,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Ubuntu&display=swap');
 * {
     /* font-family: 'Kufam', cursive; */
-    /* font-family: 'Titillium Web', sans-serif; */
+    font-family: 'Titillium Web', sans-serif;
     /* font-family: 'Cairo', sans-serif; */
     /* font-family: 'Caveat', cursive; */
     /* font-family: 'Exo 2', sans-serif; */
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
 }
 
 body {
@@ -27,10 +27,7 @@ body {
 #messages {
     
 }
-#userName {
-    color: red;
-    font-size:50%;
-}
+
 #messageContent {
     margin: 5px 5px 5px 0px;
     float: right;
@@ -147,4 +144,9 @@ body {
 											  rgba(0, 0, 0, .2) 75%,
 											  transparent 75%,
 											  transparent)
+}
+#userName {
+    color: red;
+    font-size:100%;
+    
 }
