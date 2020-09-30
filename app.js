@@ -13,6 +13,7 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  
   const dbRef = firebase.database().ref('chatUsersData/');
 
   function storeUserData() {
@@ -34,7 +35,7 @@
    dbRef.on('value', function(snapshot) {
     console.log(snapshot.val());
   });
-  
+
   // Facebook LogIn Function
   function fbSignIn() {
     var provider = new firebase.auth.FacebookAuthProvider();
@@ -58,8 +59,7 @@
     .catch(()=>{
         console.log("error")
     })
-
-}
+  }
 
   var userMessage = document.getElementById("message");
   var btnSendMessage = document.getElementById("btnSend");
