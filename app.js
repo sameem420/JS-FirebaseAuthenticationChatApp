@@ -13,6 +13,28 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  const dbRef = firebase.database().ref('chatUsersData/');
+
+  function storeUserData() {
+      // Storing dummy data in Firebase
+    dbRef.set({
+      username: userInfo.displayName,
+      email: userInfo.email,
+      profile_picture : userInfo.imageUrl
+    }, function(error) {
+      if (error) {
+        console.log("The write failed...");
+      } else {
+        console.log("Data saved successfully!");
+      }
+    });
+  }
+  
+   // retreiving data from Firebase
+   dbRef.on('value', function(snapshot) {
+    console.log(snapshot.val());
+  });
+  
   // Facebook LogIn Function
   function fbSignIn() {
     var provider = new firebase.auth.FacebookAuthProvider();
@@ -39,11 +61,6 @@
 
 }
 
-  // retreiving data from Firebase
-  dbRef.on('value', function(snapshot) {
-    console.log(snapshot.val());
-  });
-
   var userMessage = document.getElementById("message");
   var btnSendMessage = document.getElementById("btnSend");
   var messages = document.getElementById("messages");
@@ -61,19 +78,6 @@
     messages.appendChild(messageContent);
     let brk = document.createElement('br');
     messages.appendChild(brk);
-     // Storing dummy data in Firebase
-     const dbRef = firebase.database().ref('chatUsersData/');
-     dbRef.set({
-       username: userInfo.displayName,
-       email: userInfo.email,
-       profile_picture : userInfo.imageUrl
-     }, function(error) {
-       if (error) {
-         console.log("The write failed...");
-       } else {
-         console.log("Data saved successfully!");
-       }
-     });
   }
 
   btnSendMessage.addEventListener('click', sendMessage);
