@@ -29,18 +29,35 @@ body {
     border-left: 5px solid red;
     border-right: 5px solid red;
 }
-#chat_section {
-    width: 70%;
+#wrapper {
     margin: auto;
-    margin-top: 50px;
-    border-radius: 5px;
-    border: 5px solid #868f96;
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    overflow-y: auto;
-    height: 300px;
+    width: 100%;
     -webkit-box-shadow: 0px 0px 300px -5px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 300px -5px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 300px -5px rgba(0,0,0,0.5);
+}
+#users_section {
+    float: left;
+    width: 30%;
+    box-sizing: border-box;
+    border-right: 5px solid #596164;
+    border-radius: 5px;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    overflow-y: auto;
+    height: 300px;
+}
+#chat_section {
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    overflow-y: auto;
+    height: 300px;
+}
+#message_section {
+    width: 70%;
+    float: right;
 }
 #messages {
     box-sizing: border-box;
@@ -49,6 +66,7 @@ body {
     color: rgb(158, 154, 154);
     font-size: smaller;
     float: right;
+    font-family: 'PT Sans', sans-serif;
 }
 #messageContent {
     margin: 5px 5px 5px 5px;
@@ -88,7 +106,7 @@ body {
 }
 
 #message {
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 10px;
     padding-left: 10px;
     width: 65%;

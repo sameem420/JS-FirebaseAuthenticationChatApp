@@ -13,21 +13,18 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  
-  const dbRef = firebase.database().ref('chatUsersData/');
+
+  const dbRef = firebase.database().ref('UsersInfo/');
 
   function storeUserData() {
       // Storing dummy data in Firebase
-    dbRef.set({
+    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    console.log(userInfo);
+    dbRef.push({
+      userID: userInfo.uid,
       username: userInfo.displayName,
       email: userInfo.email,
-      profile_picture : userInfo.imageUrl
-    }, function(error) {
-      if (error) {
-        console.log("The write failed...");
-      } else {
-        console.log("Data saved successfully!");
-      }
+      profile_picture : userInfo.photoURL
     });
   }
   
@@ -61,15 +58,15 @@
     })
   }
 
+
   var userMessage = document.getElementById("message");
   var btnSendMessage = document.getElementById("btnSend");
   var messages = document.getElementById("messages");
 
-  let sendMessage = () => {
+  function sendMessage() {
     let message = userMessage.value;
     let messageContent = document.createElement('div');
     let userName = document.createElement('h5');
-    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
     userName.setAttribute('id', 'userName');
     userName.innerHTML = "~" + localStorage.getItem('displayName');
     messageContent.setAttribute('id', 'messageContent');
@@ -78,6 +75,5 @@
     messages.appendChild(messageContent);
     let brk = document.createElement('br');
     messages.appendChild(brk);
+    storeUserData();
   }
-
-  btnSendMessage.addEventListener('click', sendMessage);
