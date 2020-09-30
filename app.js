@@ -35,11 +35,11 @@
     let brk = document.createElement('br');
     messages.appendChild(brk);
      // Storing dummy data in Firebase
-     const dbRef = firebase.database().ref('chatUsersData');
+     const dbRef = firebase.database().ref('chatUsersData/');
      dbRef.set({
-       username: userName,
-       email: "email@email.com",
-       profile_picture : "imageUrl"
+       username: user.displayName,
+       email: user.email,
+       profile_picture : user.imageUrl
      }, function(error) {
        if (error) {
          console.log("The write failed...");
