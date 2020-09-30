@@ -13,45 +13,7 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  // retreiving data from Firebase
-  dbRef.on('value', function(snapshot) {
-    console.log(snapshot.val());
-  });
-
-  var userMessage = document.getElementById("message");
-  var btnSendMessage = document.getElementById("btnSend");
-  var messages = document.getElementById("messages");
-
-  let sendMessage = () => {
-    let message = userMessage.value;
-    let messageContent = document.createElement('div');
-    let userName = document.createElement('h5');
-    userName.setAttribute('id', 'userName');
-    userName.innerHTML = "~" + localStorage.getItem('displayName');
-    messageContent.setAttribute('id', 'messageContent');
-    messageContent.innerHTML = message;
-    messageContent.appendChild(userName);
-    messages.appendChild(messageContent);
-    let brk = document.createElement('br');
-    messages.appendChild(brk);
-     // Storing dummy data in Firebase
-     const dbRef = firebase.database().ref('chatUsersData/');
-     dbRef.set({
-       username: user.displayName,
-       email: user.email,
-       profile_picture : user.imageUrl
-     }, function(error) {
-       if (error) {
-         console.log("The write failed...");
-       } else {
-         console.log("Data saved successfully!");
-       }
-     });
-  }
-
-  btnSendMessage.addEventListener('click', sendMessage);
-
- // Facebook LogIn Function
+  // Facebook LogIn Function
   function fbSignIn() {
     var provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
@@ -76,3 +38,42 @@
     })
 
 }
+
+  // retreiving data from Firebase
+  dbRef.on('value', function(snapshot) {
+    console.log(snapshot.val());
+  });
+
+  var userMessage = document.getElementById("message");
+  var btnSendMessage = document.getElementById("btnSend");
+  var messages = document.getElementById("messages");
+
+  let sendMessage = () => {
+    let message = userMessage.value;
+    let messageContent = document.createElement('div');
+    let userName = document.createElement('h5');
+    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    userName.setAttribute('id', 'userName');
+    userName.innerHTML = "~" + localStorage.getItem('displayName');
+    messageContent.setAttribute('id', 'messageContent');
+    messageContent.innerHTML = message;
+    messageContent.appendChild(userName);
+    messages.appendChild(messageContent);
+    let brk = document.createElement('br');
+    messages.appendChild(brk);
+     // Storing dummy data in Firebase
+     const dbRef = firebase.database().ref('chatUsersData/');
+     dbRef.set({
+       username: userInfo.displayName,
+       email: userInfo.email,
+       profile_picture : userInfo.imageUrl
+     }, function(error) {
+       if (error) {
+         console.log("The write failed...");
+       } else {
+         console.log("Data saved successfully!");
+       }
+     });
+  }
+
+  btnSendMessage.addEventListener('click', sendMessage);
