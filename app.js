@@ -13,20 +13,10 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-
-  const dbRef = firebase.database().ref('chatUsersData');
-  dbRef.set({
-    username: "Sameem",
-    email: "email@email.com",
-    profile_picture : "imageUrl"
-  }, function(error) {
-    if (error) {
-      console.log("The write failed...");
-    } else {
-      console.log("Data saved successfully!");
-    }
+  // retreiving data from Firebase
+  dbRef.on('value', function(snapshot) {
+    console.log(snapshot.val());
   });
-
 
   var userMessage = document.getElementById("message");
   var btnSendMessage = document.getElementById("btnSend");
@@ -36,20 +26,33 @@
     let message = userMessage.value;
     let messageContent = document.createElement('div');
     let userName = document.createElement('h5');
+    userName.setAttribute('id', 'userName');
+    userName.innerHTML = "~" + localStorage.getItem('displayName');
     messageContent.setAttribute('id', 'messageContent');
     messageContent.innerHTML = message;
     messageContent.appendChild(userName);
     messages.appendChild(messageContent);
-    userName.setAttribute('id', 'userName');
-    userName.innerHTML = "~" + localStorage.getItem('displayName');
-    
+    let brk = document.createElement('br');
+    messages.appendChild(brk);
+     // Storing dummy data in Firebase
+     const dbRef = firebase.database().ref('chatUsersData');
+     dbRef.set({
+       username: userName,
+       email: "email@email.com",
+       profile_picture : "imageUrl"
+     }, function(error) {
+       if (error) {
+         console.log("The write failed...");
+       } else {
+         console.log("Data saved successfully!");
+       }
+     });
   }
-
 
   btnSendMessage.addEventListener('click', sendMessage);
 
  // Facebook LogIn Function
-  function signInWithFB() {
+  function fbSignIn() {
     var provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
