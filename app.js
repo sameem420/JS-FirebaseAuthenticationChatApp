@@ -73,7 +73,5 @@
     messageContent.innerHTML = message;
     messageContent.appendChild(userName);
     messages.appendChild(messageContent);
-    let brk = document.createElement('br');
-    messages.appendChild(brk);
     storeUserData();
   }
