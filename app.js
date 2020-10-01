@@ -14,13 +14,13 @@
   firebase.initializeApp(firebaseConfig);
 
 
-  const dbRef = firebase.database().ref('UsersInfo/');
+  const dbRef = firebase.database().ref();
+  var userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const usersRef = dbRef.child('UsersInfo/' + userInfo.uid);
 
   function storeUserData() {
       // Storing dummy data in Firebase
-    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(userInfo);
-    dbRef.push({
+    usersRef.push({
       userID: userInfo.uid,
       username: userInfo.displayName,
       email: userInfo.email,
@@ -29,7 +29,7 @@
   }
   
    // retreiving data from Firebase
-   dbRef.on('value', function(snapshot) {
+   usersRef.on('value', snapshot => {
     console.log(snapshot.val());
   });
 
