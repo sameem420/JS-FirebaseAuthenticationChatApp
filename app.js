@@ -16,15 +16,16 @@
 
   const dbRef = firebase.database().ref();
   var userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const usersRef = dbRef.child('UsersInfo/' + userInfo.uid);
+  const usersRef = dbRef.child('UsersInfo').child(userInfo.uid+'/');
+  const msgsRef = dbRef.child('UsersMessages');
 
   function storeUserData() {
       // Storing dummy data in Firebase
-    usersRef.push({
-      userID: userInfo.uid,
-      username: userInfo.displayName,
-      email: userInfo.email,
-      profile_picture : userInfo.photoURL
+      usersRef.set({
+        userID: userInfo.uid,
+        username: userInfo.displayName,
+        email: userInfo.email,
+        profile_picture : userInfo.photoURL
     });
   }
   

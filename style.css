@@ -1,20 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Ubuntu&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
 * {
-    /* font-family: 'Kufam', cursive; */
-    /* font-family: 'Titillium Web', sans-serif; */
+    font-family: 'Kufam', cursive;
     /* font-family: 'Cairo', sans-serif; */
     /* font-family: 'Caveat', cursive; */
     /* font-family: 'Exo 2', sans-serif; */
     /* font-family: 'Ubuntu', sans-serif; */
-    /* font-family: 'PT Sans', sans-serif; */
-    font-family: 'Quicksand', sans-serif;
 }
 
 body {
@@ -63,20 +60,29 @@ body {
     box-sizing: border-box;
 }
 #userName {
-    color: rgb(158, 154, 154);
+    color: rgb(172, 166, 166);
     font-size: smaller;
     float: right;
-    font-family: 'PT Sans', sans-serif;
+    /* font-family: 'Kufam', cursive; */
+    /* font-family: 'Baloo 2', sans-serif; */
+    font-family: 'Kaushan Script', cursive;
+    /* font-family: 'Maven Pro', sans-serif; */
+}
+#user_photo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
 }
 #messageContent {
     margin: 5px 5px 5px 5px;
     float: right;
+    clear: right;
     color: white;
     text-align: justify;
     word-wrap: break-word;
-    background-color: #5a5858;
+    background-color: #6e6b6b;
     padding: 5px 10px 5px 10px;
-    background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
+    background-image: linear-gradient(to right, #6d7379 0%, #596164 100%);
     border-radius: 20px 0px 20px 0px;
     -moz-border-radius: 20px 0px 20px 0px;
     -webkit-border-radius: 20px 0px 20px 0px;
