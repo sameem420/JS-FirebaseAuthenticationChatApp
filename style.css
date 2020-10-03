@@ -7,6 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 
 * {
+    box-sizing: border-box;
     font-family: 'Kufam', cursive;
     /* font-family: 'Cairo', sans-serif; */
     /* font-family: 'Caveat', cursive; */
@@ -73,6 +74,16 @@ body {
     height: 75px;
     border-radius: 50px;
 }
+#online_userphoto {
+    float: left;
+    margin: 0px 0px 0px 10px;
+    border-radius: 50px;
+}
+#online_user{
+    display: inline-block; 
+    margin: 20px 0px 0px 0px;
+}
+
 #messageContent {
     margin: 5px 5px 5px 5px;
     float: right;
