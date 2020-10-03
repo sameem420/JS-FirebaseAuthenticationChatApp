@@ -43,6 +43,7 @@
          var user = result.user;
          localStorage.setItem("userInfo", JSON.stringify(user));
          localStorage.setItem("displayName", user.displayName);
+         localStorage.setItem("userEmail", user.email);
         // ...
       }).catch(error => {
             console.log(error.message)
@@ -75,4 +76,13 @@
     messageContent.appendChild(userName);
     messages.appendChild(messageContent);
     storeUserData();
+    var key = firebase.database().ref('chat').push().key;
+    var Email = localStorage.getItem('userEmail');
+    console.log(Email);
+    var messagesend = {
+      message : messageContent.innerText,
+      key : key,
+      user : userName.textContent
+    }
+    firebase.database().ref('chat/' + Email).set(messagesend);
   }
