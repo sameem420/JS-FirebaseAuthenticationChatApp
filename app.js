@@ -41,7 +41,7 @@
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
          window.location = "chat.html"
          var user = result.user;
-         localStorage.setItem("userEmail", user.email);
+         localStorage.setItem("email", user.email);
          localStorage.setItem("displayName", user.displayName);
          localStorage.setItem("userInfo", JSON.stringify(user));
       }).catch(error => {
@@ -59,9 +59,7 @@
     })
   }
 
-
   var userMessage = document.getElementById("message");
-  var btnSendMessage = document.getElementById("btnSend");
   var messages = document.getElementById("messages");
 
   function sendMessage() {
@@ -76,12 +74,11 @@
     messages.appendChild(messageContent);
     storeUserData();
     var key = firebase.database().ref('chat').push().key;
-    var Email = localStorage.getItem('userEmail');
-    console.log(Email);
+    
     var messagesend = {
       message : messageContent.innerText,
       key : key,
       user : userName.textContent
     }
-    firebase.database().ref('chat/' + Email).set(messagesend);
+    firebase.database().ref('chat/' + key).set(messagesend);
   }
