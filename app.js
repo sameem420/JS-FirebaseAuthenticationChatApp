@@ -53,6 +53,7 @@
   function fbSignOut() {
     firebase.auth().signOut().then(() => {
         window.location= 'index.html'
+        localStorage.clear();
     })
     .catch(()=>{
         console.log("error")
@@ -76,9 +77,10 @@
     var key = firebase.database().ref('chat').push().key;
     
     var messagesend = {
-      message : messageContent.innerText,
       key : key,
-      user : userName.textContent
+      userName : userName.textContent,
+      userEmail : userInfo.email,
+      message : messageContent.innerText,
     }
     firebase.database().ref('chat/' + key).set(messagesend);
   }
