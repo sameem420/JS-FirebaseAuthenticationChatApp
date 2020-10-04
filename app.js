@@ -15,14 +15,13 @@
 
 
   const dbRef = firebase.database().ref();
-  var userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const usersRef = dbRef.child('UsersInfo').child(userInfo.uid+'/');
-  const msgsRef = dbRef.child('UsersMessages');
+  let key = firebase.database().ref('UsersInfo').push().key;
+  const usersRef = dbRef.child('UsersInfo/' + key);
 
   function storeUserData() {
       // Storing dummy data in Firebase
       usersRef.set({
-        userID: userInfo.uid,
+        userID: key,
         username: userInfo.displayName,
         email: userInfo.email,
         profile_picture : userInfo.photoURL
@@ -36,7 +35,7 @@
 
   // Facebook LogIn Function
   function fbSignIn() {
-    var provider = new firebase.auth.FacebookAuthProvider();
+    let provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
          window.location = "chat.html"
@@ -74,10 +73,10 @@
     messageContent.appendChild(userName);
     messages.appendChild(messageContent);
     storeUserData();
-    var key = firebase.database().ref('chat').push().key;
+    let key = firebase.database().ref('chat').push().key;
     
-    var messagesend = {
-      key : key,
+    let messagesend = {
+      userID : key,
       userName : userName.textContent,
       userEmail : userInfo.email,
       message : messageContent.innerText,
