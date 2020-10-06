@@ -21,6 +21,12 @@
   const usersRef = dbRef.child('UsersInfo/' + userkey);
   const chatRef = dbRef.child('userChats');
 
+  let message = userMessage.value;
+  let messageContent = document.createElement('div');
+  messageContent.setAttribute('id', 'messageContent');
+  let userName = document.createElement('h5');
+  userName.setAttribute('id', 'userName');
+  let name = localStorage.getItem('displayName');
 
   function storeUserData() {
       // Storing dummy data in Firebase
@@ -67,13 +73,6 @@
   var messages = document.getElementById("messages");
 
   function sendMessage() {
-
-    let message = userMessage.value;
-    let messageContent = document.createElement('div');
-    messageContent.setAttribute('id', 'messageContent');
-    let userName = document.createElement('h5');
-    userName.setAttribute('id', 'userName');
-    let name = localStorage.getItem('displayName');
     // storing messages in DB
     let messageData = {
       userID : messagekey,
@@ -90,10 +89,9 @@
         console.log(usermsgInfo.userEmail);
         userName.innerHTML = "~" + usermsgInfo.userName;
         messageContent.innerHTML = usermsgInfo.userMessage;
+        messageContent.appendChild(userName);
+        messages.appendChild(messageContent);
       });
     });
-
-    messageContent.appendChild(userName);
-    messages.appendChild(messageContent);
     storeUserData();
   }
