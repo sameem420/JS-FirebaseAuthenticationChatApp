@@ -25,7 +25,7 @@
   function storeUserData() {
       // Storing dummy data in Firebase
       usersRef.set({
-        userID: key,
+        userID: userkey,
         username: userInfo.displayName,
         email: userInfo.email,
         profile_picture : userInfo.photoURL
@@ -68,19 +68,6 @@
 
   function sendMessage() {
 
-    let messagesend = {
-      userID : key,
-      userName : userName.textContent,
-      userEmail : userInfo.email,
-      userMessage : message,
-    }
-
-    chatRef.set(messagesend);
-
-    chatRef.on('value', snapshot => {
-      console.log(snapshot.val());
-    });
-
     let message = userMessage.value;
     let messageContent = document.createElement('div');
     let userName = document.createElement('h5');
@@ -91,5 +78,18 @@
     messageContent.appendChild(userName);
     messages.appendChild(messageContent);
     storeUserData();
+    
+    let messageData = {
+      userID : messagekey,
+      userName : userName.textContent,
+      userEmail : userInfo.email,
+      userMessage : message,
+    }
+
+    chatRef.set(messageData);
+
+    chatRef.on('value', snapshot => {
+      console.log(snapshot.val());
+    });
     
   }
