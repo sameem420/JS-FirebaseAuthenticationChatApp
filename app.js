@@ -21,7 +21,6 @@
   const usersRef = dbRef.child('UsersInfo/' + userkey);
   const chatRef = dbRef.child('userChats');
 
-  let message = userMessage.value;
   let messageContent = document.createElement('div');
   messageContent.setAttribute('id', 'messageContent');
   let userName = document.createElement('h5');
@@ -73,6 +72,7 @@
   var messages = document.getElementById("messages");
 
   function sendMessage() {
+    let message = userMessage.value;
     // storing messages in DB
     let messageData = {
       userID : messagekey,
@@ -81,17 +81,18 @@
       userMessage : message,
     }
     chatRef.push(messageData);
-    // retrieving messages from DB
-    chatRef.on('value', snapshot => {
-      snapshot.forEach(snap => {
-        var usermsgInfo = snap.val();
-        console.log(usermsgInfo.userID);
-        console.log(usermsgInfo.userEmail);
-        userName.innerHTML = "~" + usermsgInfo.userName;
-        messageContent.innerHTML = usermsgInfo.userMessage;
-        messageContent.appendChild(userName);
-        messages.appendChild(messageContent);
-      });
-    });
     storeUserData();
   }
+
+  // retrieving messages from DB
+  chatRef.on('value', snapshot => {
+    snapshot.forEach(snap => {
+      var usermsgInfo = snap.val();
+      console.log(usermsgInfo.userID);
+      console.log(usermsgInfo.userEmail);
+      userName.innerHTML = "~" + usermsgInfo.userName;
+      messageContent.innerHTML = usermsgInfo.userMessage;
+      messageContent.appendChild(userName);
+      messages.appendChild(messageContent);
+    });
+  });
