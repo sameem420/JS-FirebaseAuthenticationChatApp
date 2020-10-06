@@ -19,7 +19,7 @@
   let messagekey = firebase.database().ref('chat').push().key;
 
   const usersRef = dbRef.child('UsersInfo/' + userkey);
-  const chatRef = dbRef.child('userChats/' + messagekey);
+  const chatRef = dbRef.child('userChats');
 
 
   function storeUserData() {
@@ -86,10 +86,10 @@
       userMessage : message,
     }
 
-    chatRef.set(messageData);
+    chatRef.push(messageData);
 
     chatRef.on('value', snapshot => {
       console.log(snapshot.val());
     });
-    
+
   }
