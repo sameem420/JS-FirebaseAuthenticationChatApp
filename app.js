@@ -70,26 +70,30 @@
 
     let message = userMessage.value;
     let messageContent = document.createElement('div');
+    messageContent.setAttribute('id', 'messageContent');
     let userName = document.createElement('h5');
     userName.setAttribute('id', 'userName');
-    userName.innerHTML = "~" + localStorage.getItem('displayName');
-    messageContent.setAttribute('id', 'messageContent');
-    messageContent.innerHTML = message;
-    messageContent.appendChild(userName);
-    messages.appendChild(messageContent);
-    storeUserData();
-    
+    let name = localStorage.getItem('displayName');
+    // storing messages in DB
     let messageData = {
       userID : messagekey,
-      userName : userName.textContent,
+      userName : name,
       userEmail : userInfo.email,
       userMessage : message,
     }
-
     chatRef.push(messageData);
-
+    // retrieving messages from DB
     chatRef.on('value', snapshot => {
-      console.log(snapshot.val());
+      snapshot.forEach(snap => {
+        var usermsgInfo = snap.val();
+        console.log(usermsgInfo.userID);
+        console.log(usermsgInfo.userEmail);
+        userName.innerHTML = "~" + usermsgInfo.userName;
+        messageContent.innerHTML = usermsgInfo.userMessage;
+      });
     });
 
+    messageContent.appendChild(userName);
+    messages.appendChild(messageContent);
+    storeUserData();
   }
