@@ -33,8 +33,6 @@
   function fbSignIn() {
     let provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
-        
-         window.location = "chat.html"
          var user = result.user;
          localStorage.setItem("email", user.email);
          localStorage.setItem("displayName", user.displayName);
@@ -43,19 +41,23 @@
          // Storing data in Firebase
          usersRef.on('value', snapshot => {
           snapshot.forEach(snap => {
-            var usersInfo = snap.val();
-            console.log(usersInfo.email);
+            let usrInfo = snap.val();
+            console.log("localStorage value " + userInfo.email);
+            console.log("DB value " + usrInfo.email);
+            if(userInfo.email == usrInfo.email) {
+              console.log("Record Found");
+            }
+            else {
+              usersRef.push({
+                userID: userkey,
+                username: userInfo.displayName,
+                email: userInfo.email,
+                profile_picture : userInfo.photoURL
+            });
+            }
           });
-        });
-        ref.orderByChild('email').equalTo(usersInfo.email).then(() => {
-
-        })
-        usersRef.push({
-          userID: userkey,
-          username: userInfo.displayName,
-          email: userInfo.email,
-          profile_picture : userInfo.photoURL
-      });
+        }); 
+      window.location = "chat.html"
       }).catch(error => {
             console.log(error.message)
       });
@@ -103,7 +105,7 @@
   // retrieving userinfo from DB
   usersRef.on('value', snapshot => {
     snapshot.forEach(snap => {
-      var usersInfo = snap.val();
+      let usersInfo = snap.val();
       console.log(usersInfo.userID);
       console.log(usersInfo.username);
       console.log(usersInfo.email);
