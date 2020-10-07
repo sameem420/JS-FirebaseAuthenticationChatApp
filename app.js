@@ -42,8 +42,6 @@
          usersRef.on('value', snapshot => {
           snapshot.forEach(snap => {
             let usrInfo = snap.val();
-            console.log("localStorage value " + userInfo.email);
-            console.log("DB value " + usrInfo.email);
             if(userInfo.email == usrInfo.email) {
               console.log("Record Found");
             }
@@ -54,7 +52,7 @@
                 email: userInfo.email,
                 profile_picture : userInfo.photoURL
             });
-            }
+          }
           });
         }); 
       window.location = "chat.html"
