@@ -41,6 +41,15 @@
          localStorage.setItem("userInfo", JSON.stringify(user));
          userInfo = JSON.parse(localStorage.getItem("userInfo"));
          // Storing data in Firebase
+         usersRef.on('value', snapshot => {
+          snapshot.forEach(snap => {
+            var usersInfo = snap.val();
+            console.log(usersInfo.email);
+          });
+        });
+        ref.orderByChild('email').equalTo(usersInfo.email).then(() => {
+
+        })
         usersRef.push({
           userID: userkey,
           username: userInfo.displayName,
