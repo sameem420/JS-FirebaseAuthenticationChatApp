@@ -18,7 +18,7 @@
   let userkey = firebase.database().ref('UsersInfo').push().key;
   let messagekey = firebase.database().ref('chat').push().key;
 
-  const usersRef = dbRef.child('UsersInfo/' + userkey);
+  const usersRef = dbRef.child('UsersInfo');
   const chatRef = dbRef.child('userChats');
 
   let messageContent = document.createElement('div');
@@ -36,11 +36,6 @@
         profile_picture : userInfo.photoURL
     });
   }
-  
-   // retreiving data from Firebase
-   usersRef.on('value', snapshot => {
-    console.log(snapshot.val());
-  });
 
   // Facebook LogIn Function
   function fbSignIn() {
@@ -55,6 +50,7 @@
       }).catch(error => {
             console.log(error.message)
       });
+      storeUserData();
   }
 
   // Facebook LogOut Function
@@ -81,7 +77,6 @@
       userMessage : message,
     }
     chatRef.push(messageData);
-    storeUserData();
   }
 
   // retrieving messages from DB
@@ -94,5 +89,16 @@
       messageContent.innerHTML = usermsgInfo.userMessage;
       messageContent.appendChild(userName);
       messages.appendChild(messageContent);
+    });
+  });
+
+  // retrieving userinfo from DB
+  usersRef.on('value', snapshot => {
+    snapshot.forEach(snap => {
+      var usersInfo = snap.val();
+      console.log(usersInfo.userID);
+      console.log(usersInfo.username);
+      console.log(usersInfo.email);
+      console.log(usersInfo.profile_picture);
     });
   });
