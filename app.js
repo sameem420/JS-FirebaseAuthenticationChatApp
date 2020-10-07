@@ -13,44 +13,43 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-
+  // Initializing database instance's
   const dbRef = firebase.database().ref();
   let userkey = firebase.database().ref('UsersInfo').push().key;
   let messagekey = firebase.database().ref('chat').push().key;
-
   const usersRef = dbRef.child('UsersInfo');
   const chatRef = dbRef.child('userChats');
 
+
   let messageContent = document.createElement('div');
   messageContent.setAttribute('id', 'messageContent');
+
   let userName = document.createElement('h5');
   userName.setAttribute('id', 'userName');
   let name = localStorage.getItem('displayName');
-
-  function storeUserData() {
-      // Storing dummy data in Firebase
-      usersRef.set({
-        userID: userkey,
-        username: userInfo.displayName,
-        email: userInfo.email,
-        profile_picture : userInfo.photoURL
-    });
-  }
+  var userInfo = {};
 
   // Facebook LogIn Function
   function fbSignIn() {
     let provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        
          window.location = "chat.html"
          var user = result.user;
          localStorage.setItem("email", user.email);
          localStorage.setItem("displayName", user.displayName);
          localStorage.setItem("userInfo", JSON.stringify(user));
+         userInfo = JSON.parse(localStorage.getItem("userInfo"));
+         // Storing data in Firebase
+        usersRef.push({
+          userID: userkey,
+          username: userInfo.displayName,
+          email: userInfo.email,
+          profile_picture : userInfo.photoURL
+      });
       }).catch(error => {
             console.log(error.message)
       });
-      storeUserData();
   }
 
   // Facebook LogOut Function
